@@ -7,12 +7,13 @@ public class LootManger : MonoBehaviour
 	[Tooltip("Reference to ammo gameobject")]
 	public GameObject ammo = null;
 
-	[Header("Powerups")]
-	[Tooltip("Reference to the Divide Powerup gameobject")]
-	public GameObject dividePowerup = null;
+	[Header("Powerup Properties")]
+	[Tooltip("References to available powerups at start")]
+	public List<GameObject> AvailablePowerups = null;
 
-	[Tooltip("Reference to the Battery Powerup prefab")]
-	public GameObject batteryPowerup = null;
+	[Tooltip("The percentage chance to drop a powerup upon eliminating an enemy")]
+	[Range(0, 100)]
+	public float PowerupDropChance = 10;
 
 	[Header("Other properties")]
 	[Tooltip("The explosion intensity when the loot drops")]
@@ -51,18 +52,10 @@ public class LootManger : MonoBehaviour
 		int randomNumber = Random.Range(0, 100);
 
 		// 10% chance to spawn a divide powerup
-		if(randomNumber < 10)
+		if(randomNumber < PowerupDropChance)
 		{
-			randomNumber = Random.Range(0, 2);
-			if(randomNumber == 0)
-			{
-				SpawnItem(dividePowerup, SpawnSource);
-			}
-			else
-			{
-				SpawnItem(batteryPowerup, SpawnSource);
-			}
-			
+			randomNumber = Random.Range(0, AvailablePowerups.Count);
+			SpawnItem(AvailablePowerups[randomNumber], SpawnSource);
 		}
 
 		// Generate random number
