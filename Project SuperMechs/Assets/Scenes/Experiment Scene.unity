@@ -158,11 +158,13 @@ MonoBehaviour:
   m_MoveRepeatRate: 0.1
   m_ActionsAsset: {fileID: -944628639613478452, guid: a32714a42eecb7e4589aa672e14e55af,
     type: 3}
-  m_PointAction: {fileID: 0}
+  m_PointAction: {fileID: 4084021819189743192, guid: a32714a42eecb7e4589aa672e14e55af,
+    type: 3}
   m_MoveAction: {fileID: 0}
   m_SubmitAction: {fileID: 0}
   m_CancelAction: {fileID: 0}
-  m_LeftClickAction: {fileID: 0}
+  m_LeftClickAction: {fileID: 898088264055354703, guid: a32714a42eecb7e4589aa672e14e55af,
+    type: 3}
   m_MiddleClickAction: {fileID: 0}
   m_RightClickAction: {fileID: 0}
   m_ScrollWheelAction: {fileID: 0}
@@ -719,7 +721,7 @@ MonoBehaviour:
   - {fileID: 2412582831828613159, guid: bb52ecc69c880f34183157fe2e274816, type: 3}
   - {fileID: 2833493044095123844, guid: bceff9963b53e9946bfca9e41c4d4485, type: 3}
   PowerupDropChance: 10
-  lootExplosionIntensity: 2.5
+  lootExplosionIntensity: 0.5
 --- !u!114 &436907621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1059,7 +1061,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
