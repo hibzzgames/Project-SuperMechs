@@ -39,18 +39,7 @@ public class PlayerHandleAbilities : MonoBehaviour
 	/// </summary>
 	void PrimaryFireShoot()
 	{
-		// When primary button is clicked and when inventory's ammo is greater thant 0
-		if (inventory.AmmoCount > 0)
-		{
-			// Attempt to shoot
-			bool shotResult = inventory.PrimaryGun.Shoot(transform);
-
-			// If the shot was successful, aka, a projectile was spawned
-			if (shotResult)
-			{
-				// decrease the ammo count in the inventory by 1
-				inventory.DecrementAmmo(1);
-			}
-		}
+		// Attempt to shoot
+		inventory.PrimaryGun.Shoot(transform);
 	}
 }

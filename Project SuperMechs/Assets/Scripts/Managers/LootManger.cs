@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class LootManger : MonoBehaviour
 {
-	[Tooltip("Reference to ammo gameobject")]
-	public GameObject ammo = null;
-
 	[Header("Powerup Properties")]
 	[Tooltip("References to available powerups at start")]
 	public List<GameObject> AvailablePowerups = null;
@@ -56,16 +53,6 @@ public class LootManger : MonoBehaviour
 		{
 			randomNumber = Random.Range(0, AvailablePowerups.Count);
 			SpawnItem(AvailablePowerups[randomNumber], SpawnSource);
-		}
-
-		// Generate random number
-		int ammoCount = Random.Range(1, 5);
-		
-		// Spawn 1-5 ammo
-		while(ammoCount > 0)
-		{
-			ammoCount--;
-			SpawnItem(ammo, SpawnSource);
 		}
 	}
 
