@@ -20,10 +20,18 @@ public class Projectile : MonoBehaviour
 	/// </summary>
 	private int Layermask = 0;
 
+	private Rigidbody2D rb2d;
+
+	private void Start()
+	{
+		rb2d = GetComponent<Rigidbody2D>();
+	}
+
 	private void FixedUpdate()
 	{
 		// Moveprojectile in the forward dirrection
-		transform.position += transform.up * Speed * Time.deltaTime;
+		rb2d.MovePosition((Vector3) rb2d.position + transform.up * Speed * Time.deltaTime);
+		//transform.position += transform.up * Speed * Time.deltaTime;
 
 		// decrease the range
 		Range -= Speed * Time.deltaTime;
@@ -70,8 +78,15 @@ public class Projectile : MonoBehaviour
 		// If the result is not zero, it means that collision layer was part of layermask
 		if (result != 0)
 		{
-			// Get the shootabale object and call onShotAt
-			collision.gameObject.GetComponent<Shootable>().OnShotAt(Damage, transform.up);
+			// Get the shootable object
+			Shootable shootable = collision.gameObject.GetComponent<Shootable>();
+
+			// If the shootable is not null
+			if(shootable)
+			{
+				// Call the virtual function OnShotAt
+				shootable.OnShotAt(Damage, transform.up);
+			}
 
 			// Destory the projectile
 			Destroy(gameObject);

@@ -18,19 +18,27 @@ public class Enemy : Shootable
 	/// </summary>
 	private GameObject CurrentTarget;
 
+	/// <summary>
+	/// Instance of the rigidbody 2d component
+	/// </summary>
+	private Rigidbody2D rb2d;
+
 	private void Start()
 	{
 		// The target at the start is the player
 		CurrentTarget = GameObject.FindGameObjectWithTag("Player");
+
+		// Get the rigidbody 2d component
+		rb2d = GetComponent<Rigidbody2D>();
 	}
 
 	private void FixedUpdate()
 	{
 		// Look at the current target
 		LookAt2D.LookAt(transform, CurrentTarget.transform.position);
-		
+
 		// Move in the forward direction (updated by the look at function above) with the given speed
-		transform.position += transform.up * speed * Time.deltaTime;
+		rb2d.MovePosition((Vector3)rb2d.position + transform.up * speed * Time.deltaTime);
 	}
 
 	/// <summary>
