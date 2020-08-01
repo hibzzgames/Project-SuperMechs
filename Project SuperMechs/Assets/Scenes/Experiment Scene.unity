@@ -720,8 +720,10 @@ MonoBehaviour:
   AvailablePowerups:
   - {fileID: 2412582831828613159, guid: bb52ecc69c880f34183157fe2e274816, type: 3}
   - {fileID: 2833493044095123844, guid: bceff9963b53e9946bfca9e41c4d4485, type: 3}
-  PowerupDropChance: 10
-  lootExplosionIntensity: 0.5
+  PowerupDropChance: 100
+  AvailableWeapons: []
+  WeaponDropChance: 5
+  lootExplosionIntensity: 2.5
 --- !u!114 &436907621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1369,6 +1371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 100
+  RechargeUsingBattery: 1
   HealthText: {fileID: 609841500}
   HealthSlider: {fileID: 1766556254}
 --- !u!114 &685110943

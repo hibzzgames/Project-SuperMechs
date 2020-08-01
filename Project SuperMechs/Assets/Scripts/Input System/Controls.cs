@@ -41,6 +41,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Ineract"",
+                    ""type"": ""Button"",
+                    ""id"": ""95efdddb-2d01-4af9-96ee-588655b311f9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -142,6 +150,28 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Look Direction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e8f6d3d3-bc90-4e64-bcd0-c502e1e87f0c"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Ineract"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6f6e21ec-c2bc-4625-9e17-18e843e01690"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Ineract"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -227,6 +257,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Player_PrimaryFire = m_Player.FindAction("Primary Fire", throwIfNotFound: true);
         m_Player_MovementAction = m_Player.FindAction("Movement Action", throwIfNotFound: true);
         m_Player_LookDirection = m_Player.FindAction("Look Direction", throwIfNotFound: true);
+        m_Player_Ineract = m_Player.FindAction("Ineract", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Point = m_UI.FindAction("Point", throwIfNotFound: true);
@@ -283,6 +314,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_PrimaryFire;
     private readonly InputAction m_Player_MovementAction;
     private readonly InputAction m_Player_LookDirection;
+    private readonly InputAction m_Player_Ineract;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -290,6 +322,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @PrimaryFire => m_Wrapper.m_Player_PrimaryFire;
         public InputAction @MovementAction => m_Wrapper.m_Player_MovementAction;
         public InputAction @LookDirection => m_Wrapper.m_Player_LookDirection;
+        public InputAction @Ineract => m_Wrapper.m_Player_Ineract;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -308,6 +341,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @LookDirection.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookDirection;
                 @LookDirection.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookDirection;
                 @LookDirection.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookDirection;
+                @Ineract.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnIneract;
+                @Ineract.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnIneract;
+                @Ineract.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnIneract;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -321,6 +357,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @LookDirection.started += instance.OnLookDirection;
                 @LookDirection.performed += instance.OnLookDirection;
                 @LookDirection.canceled += instance.OnLookDirection;
+                @Ineract.started += instance.OnIneract;
+                @Ineract.performed += instance.OnIneract;
+                @Ineract.canceled += instance.OnIneract;
             }
         }
     }
@@ -389,6 +428,7 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnPrimaryFire(InputAction.CallbackContext context);
         void OnMovementAction(InputAction.CallbackContext context);
         void OnLookDirection(InputAction.CallbackContext context);
+        void OnIneract(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.U2D.Path.GUIFramework;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// This class handles player input regarding abilities
@@ -41,5 +39,21 @@ public class PlayerHandleAbilities : MonoBehaviour
 	{
 		// Attempt to shoot
 		inventory.PrimaryGun.Shoot(transform);
+	}
+
+	private void OnTriggerStay2D(Collider2D collision)
+	{
+		// Get the Interactable componenent from object getting triggered
+		Interactable interactable = collision.GetComponent<Interactable>();
+
+		// If the interactable component is present
+		if(interactable)
+        {
+			// Is interaction key being pressed 
+			bool interactionStatus = controls.Player.Ineract.triggered;
+
+			// Is interact key is pressed
+			interactable.Interact(gameObject, interactionStatus);
+        }
 	}
 }

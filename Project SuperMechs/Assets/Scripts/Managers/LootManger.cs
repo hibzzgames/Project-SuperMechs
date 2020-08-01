@@ -12,6 +12,14 @@ public class LootManger : MonoBehaviour
 	[Range(0, 100)]
 	public float PowerupDropChance = 10;
 
+	[Header("Weapon Properties")]
+	[Tooltip("References to available weapons at start")]
+	public List<GameObject> AvailableWeapons = null;
+
+	[Tooltip("The percentage chance to drop a weapon upon eliminating an enemy")]
+	[Range(0,100)]
+	public float WeaponDropChance = 5;
+
 	[Header("Other properties")]
 	[Tooltip("The explosion intensity when the loot drops")]
 	public float lootExplosionIntensity = 2.5f;
@@ -48,12 +56,22 @@ public class LootManger : MonoBehaviour
 		// Generate a random number
 		int randomNumber = Random.Range(0, 100);
 
-		// 10% chance to spawn a divide powerup
+		// % chance to drop a powerup given by a variable 
 		if(randomNumber < PowerupDropChance)
 		{
 			randomNumber = Random.Range(0, AvailablePowerups.Count);
 			SpawnItem(AvailablePowerups[randomNumber], SpawnSource);
 		}
+
+		// generate another random number
+		randomNumber = Random.Range(0, 100);
+
+		// % chance to drop a weapon specfied by a variable
+		if(randomNumber < WeaponDropChance)
+        {
+			randomNumber = Random.Range(0, AvailableWeapons.Count);
+			SpawnItem(AvailableWeapons[randomNumber], SpawnSource);
+        }
 	}
 
 	/// <summary>

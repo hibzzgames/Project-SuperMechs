@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Loot : MonoBehaviour
+public class Loot : Interactable
 {
 	/// <summary>
 	/// Virtual function representing on pickup
 	/// </summary>
-	public virtual void OnPickedUp() { }
+	/// <param name="picker"> The game object that picks up the object </param>
+	public virtual void OnPickedUp(GameObject picker) { }
 
-	/// <summary>
-	/// Time the loots stay in-game
-	/// </summary>
+	[Header("Loot Properties")]
+	[Tooltip("Time the loots stay in-game")]
 	public float timer = 3.0f;
 
 	private void Update()
@@ -26,16 +26,16 @@ public class Loot : MonoBehaviour
 		}
 	}
 
-	private void OnCollisionEnter2D(Collision2D collision)
-	{
-		if (collision.gameObject.CompareTag("Player"))
-		{
-			// The player picks the object up the object, and trigger the appropriate function based
-			// on inheritence
-			OnPickedUp();
+	/// <summary>
+	/// This function is called when an object interacts with this Interactable
+	/// </summary>
+	/// <param name="Interactii"> The object that interacts with Interactable </param>
+	public override void OnInteract(GameObject Interactii)
+    {
+		// Handle on being picked up
+		OnPickedUp(Interactii);
 
-			// Destroy the picked up object
-			Destroy(gameObject);
-		}
-	}
+		// Destroy the object upon being picked up
+		Destroy(gameObject);
+    }
 }

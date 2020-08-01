@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using JetBrains.Annotations;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,10 @@ public class Health : MonoBehaviour
 	[SerializeField]
 	[Tooltip("Max health of the player")]
 	private float MaxHealth = 100;
+
+	[SerializeField]
+	[Tooltip("Can this health component be recharged by picking up batteries? ")]
+	private bool RechargeUsingBattery = false;
 
 	/// <summary>
 	/// Current Health of the player
@@ -35,18 +40,6 @@ public class Health : MonoBehaviour
 
 		// Update health UI
 		UpdateHealthUI();
-	}
-
-	private void OnEnable()
-	{
-		// subscribe to On Battery Pickup event 
-		BatteryPowerup.OnBatteryPickup += AddHealth;
-	}
-
-	private void OnDisable()
-	{
-		// unsubscribe to On Battery pickup event
-		BatteryPowerup.OnBatteryPickup -= AddHealth;
 	}
 
 	/// <summary>
@@ -99,8 +92,10 @@ public class Health : MonoBehaviour
 	/// Adds health to the current health value
 	/// </summary>
 	/// <param name="healthToAdd"> The amount of health to add </param>
-	public void AddHealth(float healthToAdd)
+	public bool AddHealth(float healthToAdd)
 	{
+		
+
 		// Add the given value to current health
 		CurrentHealth += healthToAdd;
 
@@ -113,5 +108,21 @@ public class Health : MonoBehaviour
 
 		// Update tthe health UI reflecting changes made
 		UpdateHealthUI();
+
+		return true;
+	}
+
+	public bool AddHealthBattery(float healthToAdd)
+    {
+		// If the health compoenent cannot pickup batteries, don't recharge by adding it
+		if (!RechargeUsingBattery) return false;
+
+		// If it reaches here, the health component can be recharged with a battery
+		// So add the health
+		AddHealth(healthToAdd);
+
+		// Indicate that it has been recharged
+		return true;
+
 	}
 }

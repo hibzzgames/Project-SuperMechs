@@ -7,7 +7,7 @@ public class DividePowerUp : Loot
 	/// <summary>
 	/// On Divide powerup being picked up
 	/// </summary>
-	public override void OnPickedUp()
+	public override void OnPickedUp(GameObject picker)
 	{
 		// Triggers an event responsible for updating the multiplier of the SpawnManagar
 		SpawnManager.ModifyMultiplier?.Invoke(0.5f);

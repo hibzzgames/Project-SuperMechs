@@ -5,16 +5,10 @@ using UnityEngine.UIElements;
 
 public class BatteryPowerup : Loot
 {
+	[Header("Battery Properties")]
 	[Tooltip("The health amount restored")]
 	[SerializeField]
 	private float HealthRestored = 300;
-
-	#region events
-
-	public delegate void BatteryPickupAction(float healthToRestore);
-	public static event BatteryPickupAction OnBatteryPickup;
-
-	#endregion
 
 	/// <summary>
 	/// Set the health restored value of the battery
@@ -28,9 +22,12 @@ public class BatteryPowerup : Loot
 	/// <summary>
 	/// On battery pickup
 	/// </summary>
-	public override void OnPickedUp()
+	public override void OnPickedUp(GameObject picker)
 	{
-		// Triggers a battery pickup
-		OnBatteryPickup?.Invoke(HealthRestored);
+		Health health = picker.GetComponent<Health>();
+		if(health)
+        {
+			health.AddHealth(HealthRestored);
+        }
 	}
 }
