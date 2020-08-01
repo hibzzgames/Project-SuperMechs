@@ -17,7 +17,6 @@ public class PlayerHandleAbilities : MonoBehaviour
 	private void Awake()
 	{
 		controls = new Controls();
-		controls.Player.PrimaryFire.performed += ctx => PrimaryFireShoot();
 	}
 
 	private void OnEnable()
@@ -32,10 +31,20 @@ public class PlayerHandleAbilities : MonoBehaviour
 		controls.Disable();
 	}
 
-	/// <summary>
-	/// Shoot primary weapon
-	/// </summary>
-	void PrimaryFireShoot()
+    private void Update()
+    {
+		// If the primary fire button is pressed
+        if(controls.Player.PrimaryFire.ReadValue<float>() > 0)
+        {
+			// Shoot the weapon
+			PrimaryFireShoot();
+        }
+    }
+
+    /// <summary>
+    /// Shoot primary weapon
+    /// </summary>
+    void PrimaryFireShoot()
 	{
 		// Attempt to shoot
 		inventory.PrimaryGun.Shoot(transform);

@@ -13,7 +13,7 @@ public class Interactable : MonoBehaviour
 	/// </summary>
 	private new Collider2D collider;
 
-	private void Start()
+	protected virtual void Start()
 	{
 		collider = GetComponent<Collider2D>();
 	}

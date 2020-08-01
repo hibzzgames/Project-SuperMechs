@@ -720,10 +720,12 @@ MonoBehaviour:
   AvailablePowerups:
   - {fileID: 2412582831828613159, guid: bb52ecc69c880f34183157fe2e274816, type: 3}
   - {fileID: 2833493044095123844, guid: bceff9963b53e9946bfca9e41c4d4485, type: 3}
-  PowerupDropChance: 100
-  AvailableWeapons: []
-  WeaponDropChance: 5
-  lootExplosionIntensity: 2.5
+  PowerupDropChance: 10
+  AvailableWeapons:
+  - {fileID: 8686932801441360408, guid: 2d2cd7f3966776a418e026bab4fc87e5, type: 3}
+  - {fileID: 8093080924246500547, guid: 000a6a646e5b1fc4fb6d1554b52ccc93, type: 3}
+  WeaponDropChance: 100
+  lootExplosionIntensity: 1.25
 --- !u!114 &436907621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2803,45 +2805,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1439118337}
     m_Modifications:
+    - target: {fileID: 122518145652222604, guid: 2d2cd7f3966776a418e026bab4fc87e5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 835265448592043595, guid: 2d2cd7f3966776a418e026bab4fc87e5,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7207536345459967890, guid: 2d2cd7f3966776a418e026bab4fc87e5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8686932801441360408, guid: 2d2cd7f3966776a418e026bab4fc87e5,
         type: 3}
       propertyPath: m_Name
       value: Pistol
-      objectReference: {fileID: 0}
-    - target: {fileID: 8686932801441360410, guid: 2d2cd7f3966776a418e026bab4fc87e5,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8686932801441360410, guid: 2d2cd7f3966776a418e026bab4fc87e5,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.26
-      objectReference: {fileID: 0}
-    - target: {fileID: 8686932801441360410, guid: 2d2cd7f3966776a418e026bab4fc87e5,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8686932801441360410, guid: 2d2cd7f3966776a418e026bab4fc87e5,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8686932801441360410, guid: 2d2cd7f3966776a418e026bab4fc87e5,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8686932801441360410, guid: 2d2cd7f3966776a418e026bab4fc87e5,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8686932801441360410, guid: 2d2cd7f3966776a418e026bab4fc87e5,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8686932801441360410, guid: 2d2cd7f3966776a418e026bab4fc87e5,
         type: 3}

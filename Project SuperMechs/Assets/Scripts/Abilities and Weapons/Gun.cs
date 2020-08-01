@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
 
-public class Gun : MonoBehaviour
+public class Gun : Interactable
 {
+	[Header("Gun Properties")]
 	[Tooltip("Range of the gun")]
 	public float Range = 25.0f;
 
@@ -31,8 +32,10 @@ public class Gun : MonoBehaviour
 	/// </summary>
 	private int layermask = 0;
 
-	private void Start()
+	protected override void Start()
 	{
+		base.Start();
+
 		// Cheap way to not wait for firerate to affect the first projectile
 		firerateTimer = Firerate * 2;
 
@@ -116,6 +119,12 @@ public class Gun : MonoBehaviour
 	{
 		// increment the firerate timer
 		if(firerateTimer <= Firerate) { firerateTimer += Time.deltaTime; }
+	}
+
+	public override void OnInteract(GameObject Interactii)
+	{
+		Inventory inventory = Interactii.GetComponentInChildren<Inventory>();
+		inventory.SwapWeapon(this);
 	}
 }
 
